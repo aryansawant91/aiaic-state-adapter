@@ -1,0 +1,363 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://aiaic.in/schemas/state_adapter/v1.0.0",
+  "title": "AIAIC State Adapter Configuration Schema",
+  "description": "Defines what a state may configure in AIAIC without modifying Core product logic.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "state_identity",
+    "geography",
+    "agencies",
+    "policy_references",
+    "data_sources",
+    "integration_endpoints",
+    "deployment",
+    "evidence"
+  ],
+  "additionalProperties": false,
+
+  "properties": {
+
+    "schema_version": {
+      "type": "string",
+      "description": "Semantic version of the state adapter schema this config validates against.",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "examples": ["1.0.0"]
+    },
+
+    "state_identity": {
+      "type": "object",
+      "description": "Basic identity of the state deployment.",
+      "required": ["name", "code", "language", "locale"],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Full state name.",
+          "examples": ["Madhya Pradesh"]
+        },
+        "code": {
+          "type": "string",
+          "description": "ISO 3166-2 or standard state code.",
+          "examples": ["IN-MP"]
+        },
+        "language": {
+          "type": "string",
+          "description": "Primary language for this state deployment.",
+          "examples": ["Hindi"]
+        },
+        "locale": {
+          "type": "string",
+          "description": "Locale code for formatting.",
+          "examples": ["hi-IN"]
+        },
+        "contact_authority": {
+          "type": "string",
+          "description": "Primary contact authority for this state deployment."
+        }
+      }
+    },
+
+    "geography": {
+      "type": "object",
+      "description": "State-specific administrative geography hierarchy.",
+      "required": ["tiers"],
+      "additionalProperties": false,
+      "properties": {
+        "tiers": {
+          "type": "array",
+          "description": "Ordered list of administrative tiers from largest to smallest.",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["level", "label"],
+            "additionalProperties": false,
+            "properties": {
+              "level": {
+                "type": "integer",
+                "description": "Tier level (1 = highest, e.g. state)."
+              },
+              "label": {
+                "type": "string",
+                "description": "Local name for this tier.",
+                "examples": ["District", "Tehsil", "Gram Panchayat"]
+              },
+              "data_available": {
+                "type": "boolean",
+                "description": "Whether data at this granularity is available."
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "agencies": {
+      "type": "object",
+      "description": "State government department and agency mappings.",
+      "additionalProperties": false,
+      "properties": {
+        "agriculture_department": {
+          "$ref": "#/definitions/agency_reference"
+        },
+        "irrigation_department": {
+          "$ref": "#/definitions/agency_reference"
+        },
+        "farmer_registration_body": {
+          "$ref": "#/definitions/agency_reference"
+        },
+        "msp_procurement_agency": {
+          "$ref": "#/definitions/agency_reference"
+        },
+        "additional_agencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/agency_reference"
+          }
+        }
+      }
+    },
+
+    "policy_references": {
+      "type": "object",
+      "description": "References to state-specific policies and schemes. These are references only — not logic implementations.",
+      "additionalProperties": false,
+      "properties": {
+        "msp_enforced": {
+          "type": "boolean",
+          "description": "Whether MSP is enforced in this state."
+        },
+        "state_schemes": {
+          "type": "array",
+          "description": "List of state-specific agricultural scheme references.",
+          "items": {
+            "$ref": "#/definitions/scheme_reference"
+          }
+        },
+        "central_scheme_mappings": {
+          "type": "array",
+          "description": "Central schemes mapped to local state agencies.",
+          "items": {
+            "$ref": "#/definitions/scheme_reference"
+          }
+        }
+      }
+    },
+
+    "scheme_references": {
+      "type": "object",
+      "description": "Optional extended scheme reference block.",
+      "additionalProperties": true
+    },
+
+    "data_sources": {
+      "type": "array",
+      "description": "Dataset references available in this state.",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "status", "verification_status"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for this dataset reference."
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable dataset name."
+          },
+          "description": {
+            "type": "string"
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["AVAILABLE", "RESTRICTED", "UNAVAILABLE", "KNOWN_UNKNOWN"],
+            "description": "Current access status of this dataset."
+          },
+          "verification_status": {
+            "type": "string",
+            "enum": ["VERIFIED", "UNVERIFIED", "KNOWN_UNKNOWN"],
+            "description": "Whether this dataset reference has been verified."
+          },
+          "last_verified": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    },
+
+    "integration_endpoints": {
+      "type": "array",
+      "description": "External government system integrations available in this state.",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "status", "verification_status"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "endpoint_url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "auth_method": {
+            "type": "string",
+            "enum": ["API_KEY", "OAUTH2", "BASIC", "NONE", "KNOWN_UNKNOWN"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["LIVE", "PLANNED", "UNAVAILABLE", "KNOWN_UNKNOWN"]
+          },
+          "verification_status": {
+            "type": "string",
+            "enum": ["VERIFIED", "UNVERIFIED", "KNOWN_UNKNOWN"]
+          }
+        }
+      }
+    },
+
+    "workflow_overrides": {
+      "type": "array",
+      "description": "Additive state-specific workflow steps. Cannot remove or replace core steps.",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "type", "rationale"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["ADDITIONAL_STEP", "ADDITIONAL_VALIDATION", "ADDITIONAL_NOTIFICATION"],
+            "description": "Only additive types allowed — removal is prohibited."
+          },
+          "rationale": {
+            "type": "string",
+            "description": "Why this override exists and why it is state-specific."
+          },
+          "applies_to_workflow": {
+            "type": "string",
+            "description": "Which core workflow this step is added to."
+          }
+        }
+      }
+    },
+
+    "deployment": {
+      "type": "object",
+      "description": "State-specific deployment constraints.",
+      "required": ["connectivity_mode"],
+      "additionalProperties": false,
+      "properties": {
+        "connectivity_mode": {
+          "type": "string",
+          "enum": ["ONLINE", "OFFLINE", "HYBRID"],
+          "description": "Expected connectivity mode for this state deployment."
+        },
+        "languages_supported": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "infrastructure_notes": {
+          "type": "string"
+        },
+        "procurement_route": {
+          "type": "string",
+          "enum": ["CENTRAL", "STATE", "PPP", "KNOWN_UNKNOWN"]
+        },
+        "onboarding_contact": {
+          "type": "string"
+        }
+      }
+    },
+
+    "evidence": {
+      "type": "object",
+      "description": "Provenance and verification metadata for this configuration.",
+      "required": ["prepared_by", "last_verified", "verification_status"],
+      "additionalProperties": false,
+      "properties": {
+        "prepared_by": {
+          "type": "string"
+        },
+        "last_verified": {
+          "type": "string",
+          "format": "date"
+        },
+        "verification_status": {
+          "type": "string",
+          "enum": ["VERIFIED", "PARTIAL", "UNVERIFIED", "KNOWN_UNKNOWN"]
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["label", "url"],
+            "properties": {
+              "label": { "type": "string" },
+              "url": { "type": "string", "format": "uri" }
+            }
+          }
+        },
+        "notes": {
+          "type": "string",
+          "description": "Any known limitations or assumptions in this configuration."
+        }
+      }
+    }
+
+  },
+
+  "definitions": {
+
+    "agency_reference": {
+      "type": "object",
+      "required": ["name", "verification_status"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "code": { "type": "string" },
+        "website": { "type": "string", "format": "uri" },
+        "verification_status": {
+          "type": "string",
+          "enum": ["VERIFIED", "UNVERIFIED", "KNOWN_UNKNOWN"]
+        }
+      }
+    },
+
+    "scheme_reference": {
+      "type": "object",
+      "required": ["name", "verification_status"],
+      "additionalProperties": false,
+      "properties": {
+        "name": { "type": "string" },
+        "code": { "type": "string" },
+        "administering_agency": { "type": "string" },
+        "description": { "type": "string" },
+        "reference_url": { "type": "string", "format": "uri" },
+        "verification_status": {
+          "type": "string",
+          "enum": ["VERIFIED", "UNVERIFIED", "KNOWN_UNKNOWN"]
+        }
+      }
+    }
+
+  }
+}
