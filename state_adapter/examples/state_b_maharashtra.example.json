@@ -1,0 +1,263 @@
+{
+  "schema_version": "1.0.0",
+
+  "state_identity": {
+    "name": "Maharashtra",
+    "code": "IN-MH",
+    "language": "Marathi",
+    "locale": "mr-IN",
+    "contact_authority": "Commissioner of Agriculture, Government of Maharashtra"
+  },
+
+  "geography": {
+    "tiers": [
+      {
+        "level": 1,
+        "label": "State",
+        "data_available": true
+      },
+      {
+        "level": 2,
+        "label": "Division",
+        "data_available": true
+      },
+      {
+        "level": 3,
+        "label": "District",
+        "data_available": true
+      },
+      {
+        "level": 4,
+        "label": "Taluka",
+        "data_available": true
+      },
+      {
+        "level": 5,
+        "label": "Gram Panchayat",
+        "data_available": false
+      },
+      {
+        "level": 6,
+        "label": "Village",
+        "data_available": false
+      }
+    ]
+  },
+
+  "agencies": {
+    "agriculture_department": {
+      "name": "Department of Agriculture, Government of Maharashtra",
+      "code": "MH-AGRI",
+      "website": "https://krishi.maharashtra.gov.in",
+      "verification_status": "VERIFIED"
+    },
+    "irrigation_department": {
+      "name": "Water Resources Department, Government of Maharashtra",
+      "code": "MH-WRD",
+      "website": "https://wrd.maharashtra.gov.in",
+      "verification_status": "VERIFIED"
+    },
+    "farmer_registration_body": {
+      "name": "Maharashtra Agri Department — Farmer Registration Portal",
+      "code": "MH-FARMER-REG",
+      "website": "https://krishi.maharashtra.gov.in",
+      "verification_status": "UNVERIFIED"
+    },
+    "msp_procurement_agency": {
+      "name": "Maharashtra State Agricultural Marketing Board (MSAMB)",
+      "code": "MH-MSAMB",
+      "website": "https://msamb.com",
+      "verification_status": "VERIFIED"
+    },
+    "additional_agencies": [
+      {
+        "name": "Maharashtra State Warehousing Corporation",
+        "code": "MH-SWC",
+        "website": "https://mahwarehouse.com",
+        "verification_status": "UNVERIFIED"
+      },
+      {
+        "name": "Vasantrao Naik Sheti Swavalamban Mission (VNSSM)",
+        "code": "MH-VNSSM",
+        "website": "https://vnssm.org",
+        "verification_status": "UNVERIFIED"
+      }
+    ]
+  },
+
+  "policy_references": {
+    "msp_enforced": true,
+    "state_schemes": [
+      {
+        "name": "Magel Tyala Shet Tale (On-Farm Pond Scheme)",
+        "code": "MH-MTST",
+        "administering_agency": "MH-AGRI",
+        "description": "State scheme for constructing farm ponds to support irrigation — Maharashtra specific",
+        "reference_url": "https://krishi.maharashtra.gov.in",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "name": "Nanaji Deshmukh Krishi Sanjivani Prakalp (PoCRA)",
+        "code": "MH-POCRA",
+        "administering_agency": "MH-AGRI",
+        "description": "Climate resilient agriculture project for drought-prone regions of Maharashtra",
+        "reference_url": "https://pocra.maharashtra.gov.in",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "name": "Maharashtra Shetkari Sanman Yojana",
+        "code": "MH-SSY",
+        "administering_agency": "MH-AGRI",
+        "description": "State income support scheme for farmers, supplementary to PM-KISAN",
+        "reference_url": "https://krishi.maharashtra.gov.in",
+        "verification_status": "UNVERIFIED"
+      }
+    ],
+    "central_scheme_mappings": [
+      {
+        "name": "PM-KISAN",
+        "code": "CENTRAL-PMKISAN",
+        "administering_agency": "MH-AGRI",
+        "description": "Central income support — local implementation through Maharashtra Agriculture Department",
+        "reference_url": "https://pmkisan.gov.in",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+        "code": "CENTRAL-PMFBY",
+        "administering_agency": "MH-AGRI",
+        "description": "Central crop insurance — state nodal agency is Maharashtra Agriculture Dept",
+        "reference_url": "https://pmfby.gov.in",
+        "verification_status": "VERIFIED"
+      }
+    ]
+  },
+
+  "data_sources": [
+    {
+      "id": "mh-agmarknet-prices",
+      "name": "Maharashtra Mandi Price Data (Agmarknet)",
+      "description": "Daily mandi arrival and price data via MSAMB and Agmarknet portal",
+      "source_url": "https://agmarknet.gov.in",
+      "status": "AVAILABLE",
+      "verification_status": "VERIFIED",
+      "last_verified": "2026-08-01"
+    },
+    {
+      "id": "mh-pocra-data",
+      "name": "PoCRA Project Data",
+      "description": "Farm and farmer data from the Nanaji Deshmukh Krishi Sanjivani Prakalp project",
+      "source_url": "https://pocra.maharashtra.gov.in",
+      "status": "RESTRICTED",
+      "verification_status": "UNVERIFIED",
+      "last_verified": "2026-08-01"
+    },
+    {
+      "id": "mh-soil-health-cards",
+      "name": "Maharashtra Soil Health Card Data",
+      "description": "Soil test results for Maharashtra farmers",
+      "source_url": "https://soilhealth.dac.gov.in",
+      "status": "AVAILABLE",
+      "verification_status": "UNVERIFIED",
+      "last_verified": "2026-08-01"
+    },
+    {
+      "id": "mh-7-12-extract",
+      "name": "Maharashtra 7/12 Land Records",
+      "description": "Land ownership and crop sown records from Maharashtra land records portal",
+      "source_url": "https://mahabhulekh.maharashtra.gov.in",
+      "status": "AVAILABLE",
+      "verification_status": "VERIFIED",
+      "last_verified": "2026-08-01"
+    },
+    {
+      "id": "mh-farmer-registration",
+      "name": "Maharashtra Farmer Registration Database",
+      "description": "Registered farmer records",
+      "source_url": "https://krishi.maharashtra.gov.in",
+      "status": "KNOWN_UNKNOWN",
+      "verification_status": "KNOWN_UNKNOWN",
+      "last_verified": "2026-08-01"
+    }
+  ],
+
+  "integration_endpoints": [
+    {
+      "id": "mh-msamb-api",
+      "name": "MSAMB Mandi Data API",
+      "description": "Live mandi price and arrival data from Maharashtra State Agricultural Marketing Board",
+      "endpoint_url": "https://msamb.com/api",
+      "auth_method": "API_KEY",
+      "status": "PLANNED",
+      "verification_status": "UNVERIFIED"
+    },
+    {
+      "id": "mh-mahabhulekh-api",
+      "name": "MahaBhulekh Land Records API",
+      "description": "7/12 land record data integration for farm verification",
+      "endpoint_url": "https://mahabhulekh.maharashtra.gov.in/api",
+      "auth_method": "KNOWN_UNKNOWN",
+      "status": "KNOWN_UNKNOWN",
+      "verification_status": "KNOWN_UNKNOWN"
+    },
+    {
+      "id": "mh-pocra-integration",
+      "name": "PoCRA System Integration",
+      "description": "Climate resilient agriculture project data integration",
+      "endpoint_url": "https://pocra.maharashtra.gov.in/api",
+      "auth_method": "KNOWN_UNKNOWN",
+      "status": "KNOWN_UNKNOWN",
+      "verification_status": "KNOWN_UNKNOWN"
+    }
+  ],
+
+  "workflow_overrides": [
+    {
+      "id": "mh-7-12-land-verification",
+      "name": "7/12 Land Record Verification Step",
+      "type": "ADDITIONAL_VALIDATION",
+      "rationale": "Maharashtra uses the 7/12 land extract as the primary land ownership and crop sown proof. This verification step is Maharashtra-specific as this document format and portal does not exist in other states.",
+      "applies_to_workflow": "farmer_eligibility_assessment"
+    },
+    {
+      "id": "mh-pocra-zone-check",
+      "name": "PoCRA Drought Zone Classification Check",
+      "type": "ADDITIONAL_STEP",
+      "rationale": "Maharashtra has a designated set of drought-prone districts under PoCRA. An additional classification step is required to determine whether a farmer falls in a PoCRA zone, which affects scheme eligibility. This classification is Maharashtra-specific.",
+      "applies_to_workflow": "income_opportunity_assessment"
+    }
+  ],
+
+  "deployment": {
+    "connectivity_mode": "HYBRID",
+    "languages_supported": ["Marathi", "Hindi", "English"],
+    "infrastructure_notes": "Urban and semi-urban Maharashtra has good connectivity. Vidarbha and Marathwada regions have variable rural connectivity. Offline mode required for remote village operations.",
+    "procurement_route": "STATE",
+    "onboarding_contact": "Commissioner of Agriculture, Government of Maharashtra"
+  },
+
+  "evidence": {
+    "prepared_by": "Aryan Sawant",
+    "last_verified": "2026-08-14",
+    "verification_status": "PARTIAL",
+    "sources": [
+      {
+        "label": "Maharashtra Agriculture Department Official Website",
+        "url": "https://krishi.maharashtra.gov.in"
+      },
+      {
+        "label": "MSAMB Official Website",
+        "url": "https://msamb.com"
+      },
+      {
+        "label": "PoCRA Project Official Website",
+        "url": "https://pocra.maharashtra.gov.in"
+      },
+      {
+        "label": "MahaBhulekh Land Records Portal",
+        "url": "https://mahabhulekh.maharashtra.gov.in"
+      }
+    ],
+    "notes": "Configuration prepared in isolation without access to AIAIC repository or team inputs. Integration endpoint availability marked as KNOWN_UNKNOWN pending Sakshi inputs. Workflow override syntax pending confirmation from Hemanth on Core workflow identifiers. Maharashtra 7/12 land records are a unique state-specific data source not present in other states — this is a genuine structural difference from MP."
+  }
+}

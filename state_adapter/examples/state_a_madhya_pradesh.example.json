@@ -1,0 +1,237 @@
+{
+  "schema_version": "1.0.0",
+
+  "state_identity": {
+    "name": "Madhya Pradesh",
+    "code": "IN-MP",
+    "language": "Hindi",
+    "locale": "hi-IN",
+    "contact_authority": "Commissioner, Agriculture, Government of Madhya Pradesh"
+  },
+
+  "geography": {
+    "tiers": [
+      {
+        "level": 1,
+        "label": "State",
+        "data_available": true
+      },
+      {
+        "level": 2,
+        "label": "Division",
+        "data_available": true
+      },
+      {
+        "level": 3,
+        "label": "District",
+        "data_available": true
+      },
+      {
+        "level": 4,
+        "label": "Tehsil",
+        "data_available": true
+      },
+      {
+        "level": 5,
+        "label": "Gram Panchayat",
+        "data_available": false
+      },
+      {
+        "level": 6,
+        "label": "Village",
+        "data_available": false
+      }
+    ]
+  },
+
+  "agencies": {
+    "agriculture_department": {
+      "name": "Department of Agriculture, Farmers Welfare and Agriculture Development, MP",
+      "code": "MP-AGRI",
+      "website": "https://mpkrishi.mp.gov.in",
+      "verification_status": "VERIFIED"
+    },
+    "irrigation_department": {
+      "name": "Water Resources Department, Government of Madhya Pradesh",
+      "code": "MP-WRD",
+      "website": "https://wrd.mp.gov.in",
+      "verification_status": "VERIFIED"
+    },
+    "farmer_registration_body": {
+      "name": "MP Kisan App / MP Fasal Girdawari Portal",
+      "code": "MP-KISAN-REG",
+      "website": "https://mpfasal.mp.gov.in",
+      "verification_status": "UNVERIFIED"
+    },
+    "msp_procurement_agency": {
+      "name": "MP State Cooperative Marketing Federation (MARKFED)",
+      "code": "MP-MARKFED",
+      "website": "https://mpmarkfed.org",
+      "verification_status": "VERIFIED"
+    },
+    "additional_agencies": [
+      {
+        "name": "MP Agro Industries Development Corporation",
+        "code": "MP-AGRO",
+        "website": "https://mpagro.nic.in",
+        "verification_status": "UNVERIFIED"
+      }
+    ]
+  },
+
+  "policy_references": {
+    "msp_enforced": true,
+    "state_schemes": [
+      {
+        "name": "Mukhyamantri Kisan Kalyan Yojana",
+        "code": "MP-MKKV",
+        "administering_agency": "MP-AGRI",
+        "description": "State-level income support scheme for farmers in Madhya Pradesh, supplementary to PM-KISAN",
+        "reference_url": "https://saara.mp.gov.in",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "name": "MP Bhavantar Bhugtan Yojana",
+        "code": "MP-BBY",
+        "administering_agency": "MP-AGRI",
+        "description": "Price deficiency payment scheme for selected crops when market price falls below MSP",
+        "reference_url": "https://mpkrishi.mp.gov.in",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "name": "MP Fasal Bima Yojana",
+        "code": "MP-FBY",
+        "administering_agency": "MP-AGRI",
+        "description": "State crop insurance scheme aligned with PMFBY",
+        "reference_url": "https://mpkrishi.mp.gov.in",
+        "verification_status": "UNVERIFIED"
+      }
+    ],
+    "central_scheme_mappings": [
+      {
+        "name": "PM-KISAN",
+        "code": "CENTRAL-PMKISAN",
+        "administering_agency": "MP-AGRI",
+        "description": "Central income support — local implementation through MP Agriculture Department",
+        "reference_url": "https://pmkisan.gov.in",
+        "verification_status": "VERIFIED"
+      },
+      {
+        "name": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+        "code": "CENTRAL-PMFBY",
+        "administering_agency": "MP-AGRI",
+        "description": "Central crop insurance — state nodal agency is MP Agriculture Dept",
+        "reference_url": "https://pmfby.gov.in",
+        "verification_status": "VERIFIED"
+      }
+    ]
+  },
+
+  "data_sources": [
+    {
+      "id": "mp-mandi-prices",
+      "name": "MP Mandi Price Data",
+      "description": "Daily mandi arrival and price data from MP State Agricultural Marketing Board",
+      "source_url": "https://www.mpmandiboard.gov.in",
+      "status": "AVAILABLE",
+      "verification_status": "VERIFIED",
+      "last_verified": "2026-08-01"
+    },
+    {
+      "id": "mp-fasal-girdawari",
+      "name": "MP Fasal Girdawari (Crop Survey) Data",
+      "description": "Crop sown area and yield data collected via the MP Fasal Girdawari portal",
+      "source_url": "https://mpfasal.mp.gov.in",
+      "status": "RESTRICTED",
+      "verification_status": "UNVERIFIED",
+      "last_verified": "2026-08-01"
+    },
+    {
+      "id": "mp-soil-health-cards",
+      "name": "MP Soil Health Card Data",
+      "description": "Soil test results and health card data for MP farmers",
+      "source_url": "https://soilhealth.dac.gov.in",
+      "status": "AVAILABLE",
+      "verification_status": "UNVERIFIED",
+      "last_verified": "2026-08-01"
+    },
+    {
+      "id": "mp-kisan-registration",
+      "name": "MP Farmer Registration Database",
+      "description": "Registered farmer records from MP Kisan portal",
+      "source_url": "https://mpkrishi.mp.gov.in",
+      "status": "KNOWN_UNKNOWN",
+      "verification_status": "KNOWN_UNKNOWN",
+      "last_verified": "2026-08-01"
+    }
+  ],
+
+  "integration_endpoints": [
+    {
+      "id": "mp-mandi-api",
+      "name": "MP Mandi Board API",
+      "description": "Live mandi price feed from MP State Agricultural Marketing Board",
+      "endpoint_url": "https://www.mpmandiboard.gov.in/api",
+      "auth_method": "API_KEY",
+      "status": "PLANNED",
+      "verification_status": "UNVERIFIED"
+    },
+    {
+      "id": "mp-kisan-portal-api",
+      "name": "MP Kisan Portal Integration",
+      "description": "Farmer registration and scheme enrollment data",
+      "endpoint_url": "https://mpkrishi.mp.gov.in/api",
+      "auth_method": "KNOWN_UNKNOWN",
+      "status": "KNOWN_UNKNOWN",
+      "verification_status": "KNOWN_UNKNOWN"
+    },
+    {
+      "id": "mp-markfed-procurement",
+      "name": "MARKFED Procurement System",
+      "description": "MSP procurement tracking integration",
+      "endpoint_url": "https://mpmarkfed.org/api",
+      "auth_method": "KNOWN_UNKNOWN",
+      "status": "KNOWN_UNKNOWN",
+      "verification_status": "KNOWN_UNKNOWN"
+    }
+  ],
+
+  "workflow_overrides": [
+    {
+      "id": "mp-bby-eligibility-check",
+      "name": "Bhavantar Bhugtan Yojana Eligibility Notification",
+      "type": "ADDITIONAL_NOTIFICATION",
+      "rationale": "MP-specific price deficiency scheme requires an additional notification step when market price falls below MSP threshold — this scheme does not exist in other states",
+      "applies_to_workflow": "income_opportunity_assessment"
+    }
+  ],
+
+  "deployment": {
+    "connectivity_mode": "HYBRID",
+    "languages_supported": ["Hindi"],
+    "infrastructure_notes": "Rural MP has variable connectivity. Offline mode required for village-level operations. District headquarters generally have reliable connectivity.",
+    "procurement_route": "STATE",
+    "onboarding_contact": "Commissioner, Agriculture, Government of Madhya Pradesh"
+  },
+
+  "evidence": {
+    "prepared_by": "Aryan Sawant",
+    "last_verified": "2026-08-14",
+    "verification_status": "PARTIAL",
+    "sources": [
+      {
+        "label": "MP Agriculture Department Official Website",
+        "url": "https://mpkrishi.mp.gov.in"
+      },
+      {
+        "label": "MP Mandi Board Official Website",
+        "url": "https://www.mpmandiboard.gov.in"
+      },
+      {
+        "label": "MARKFED MP Official Website",
+        "url": "https://mpmarkfed.org"
+      }
+    ],
+    "notes": "Configuration prepared in isolation without access to AIAIC repository or team inputs. Integration endpoint availability marked as KNOWN_UNKNOWN pending Sakshi inputs. Workflow override syntax may require adjustment once Hemanth confirms Core workflow identifiers. Gram Panchayat and Village level data availability unconfirmed."
+  }
+}
